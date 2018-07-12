@@ -5,9 +5,9 @@ trait RobotCommand{
 }
 
 case class Robot(){
-  def cleanUp() = println("clean up.")
-  def pourJuice()  = println("pour juice")
-  def makeSandwich() = print()
+  def cleanUp() = println("clean up ...")
+  def pourJuice()  = println("pour juice ...")
+  def makeSandwich() = println("make sandwich ...")
 }
 
 case class MakeSandwichCommand(robot:Robot) extends  RobotCommand{
