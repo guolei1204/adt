@@ -37,7 +37,7 @@ object ATMExample{
       """
         |Usage:
         |  1. Write an amount
-        |  2. write EXIT to quit
+        |  2. write exit to quit
       """.stripMargin)
   }
 
