@@ -19,7 +19,7 @@ trait Observable[T]{
 
 case class User(name:String) extends  Observer[Post] {
   override def handleUpdate(subject: Post) = {
-    System.out.println(s"Hey I'am ${name} . The post got some comments : ${subject.comments}")
+    System.out.println(s"Hey, I'm ${name}. The post got some new comments: ${subject.comments}")
   }
 }
 
@@ -44,8 +44,14 @@ object PostDemo {
 
     println("create a post")
     val post = Post(user1,"this is a post about observer patterns")
+
     println("add comment")
     post.addComment(Comment(user2,"like it"))
+
+    post.addObserver(user3)
+    post.addObserver(user4)
+    post.addObserver(user2)
+
     println("add comment")
     post.addComment(Comment(user3,"well done"))
     println("add comment")
