@@ -1,17 +1,20 @@
 package com.adt.demo.test
 
-object BaseConvertion {
-  def decimal2Binary(decimal: Decimal) = {
-    decimal.number.toInt
+import scala.annotation.tailrec
 
+object BaseConvertion {
+
+  def decimal2Binary(decimal: Decimal) = {
+    Binary(toBinary(BigInt.apply(decimal.number.toInt),""))
   }
 
-  def toBinary(org: BigInt, acc: String) = {
+  @tailrec
+  def toBinary(org: BigInt, acc: String) :String = {
     if (org < 2) {
       org.toString + acc
     }
     else {
-      org.mod(2).toString() + acc
+      toBinary(org / 2 , org.mod(2).toString() + acc)
     }
   }
 
