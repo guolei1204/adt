@@ -36,6 +36,19 @@ class RobotController {
   }
 }
 
+class RobotByNameController{
+  val history = ListBuffer[() => Unit]()
+
+  def issueCommand(command: => Unit):Unit = {
+    command _ +=: history // convert method to function
+    command
+  }
+  def showHistory() = {
+    history.foreach(it => it())
+  }
+}
+
+
 object RobotExample{
   def main(args: Array[String]): Unit = {
     val robot = Robot()
@@ -46,6 +59,13 @@ object RobotExample{
     controller.issueCommand(CleanUpCommand(robot))
     println("ask robot clean table")
     controller.showHistory()
+
+    val nameController = new RobotByNameController
+    nameController.issueCommand(MakeSandwichCommand(robot).execute())
+    nameController.issueCommand(PourJuiceCommand(robot).execute())
+    nameController.issueCommand(CleanUpCommand(robot).execute())
+    println("name controller show history :")
+    nameController.showHistory()
   }
 }
 
