@@ -19,7 +19,7 @@ abstract class DictVisitor[T]{
 def dispatch[T](input:Json,visitor:Visitor[T]):T = {
   input match {
     case Str(value) => visitor.visitStr(value)
-    case Num(value) => visitor.visitNum(value)
+    case Num(value) => visitor.visitNum(value.toString)
     case Dict(pairs@ _*) =>
     val dictVistor = visitor.visitDict()
       for((k,v)  <- pairs){
