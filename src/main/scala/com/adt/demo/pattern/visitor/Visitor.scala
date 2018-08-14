@@ -1,11 +1,5 @@
 package com.adt.demo.pattern.visitor
 
-import java.io.File
-
-import com.adt.demo.pattern.visitor
-import javax.swing.text.Document
-
-
 abstract class Element(text:String) {
   def accept(visitor: Element => Unit) = {
     visitor(this)
