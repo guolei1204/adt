@@ -1,3 +1,4 @@
+import scala.annotation.tailrec
 import scala.math
 
 def bubbleSort[T <% Ordered[T]](data: List[T]): List[T] = data match {
@@ -67,6 +68,7 @@ def insertElement[T <% Ordered[T]](ele:T,sorted:List[T]):List[T] = sorted match 
 
 def s = List(2,3,9)
 
+@tailrec
 def insertSort[T <% Ordered[T]](data:List[T],sorted:List[T]):List[T] = data match {
   case Nil => sorted
   case x::Nil => insertElement(x,sorted)
