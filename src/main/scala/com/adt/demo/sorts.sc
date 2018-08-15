@@ -20,13 +20,31 @@ def getLargest[T <% Ordered[T]](data: List[T]): (T, List[T]) = data match {
   }
 }
 
+def getMin[T <% Ordered[T]](data: List[T]): (T, List[T]) = data match {
+  case (Nil) => (null.asInstanceOf[T], Nil)
+  case (fv :: Nil) => (fv, Nil)
+  case (fv :: xs) => {
+    val (rv, res) = getMin(xs)
+    if (fv >= rv) {
+      (rv, fv :: res)
+    } else {
+      (fv , xs)
+    }
+  }
+}
+
+println("####")
+val testMinList  = List(33,2,89,7)
+val (m,_) = getMin(testMinList)
+println(s"min test : ${m}")
+println("####")
 
 
 def selectSort[T <% Ordered[T]](data: List[T]): List[T] = data match {
   case Nil => Nil
   case x :: Nil => List(x)
   case x :: xs =>
-    val minData = xs.min
+    val (minData,_) = getMin(xs)
     val minIndex = xs.indexOf(minData)
     if (x <= minData) {
       x :: selectSort(xs)
@@ -96,6 +114,7 @@ def l1 = List(3, 9, 6, 2, 10)
 println(s"list is ${l1}")
 println("bubble sort --")
 bubbleSort(l1)
+println("####" * 20)
 println("select sort")
 selectSort(l1)
 println("insert sort")
