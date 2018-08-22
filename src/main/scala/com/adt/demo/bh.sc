@@ -1,7 +1,7 @@
 case class Node(rank: Int, v: Int, children: List[Node])
 
 
-def linkUp(t1: Node, t2: Node) = {
+def linkUp(t1: Node, t2: Node):Node = {
   if (t1.v < t2.v) {
     Node(t1.rank + 1, t1.v, t2 :: t1.children)
   } else {
