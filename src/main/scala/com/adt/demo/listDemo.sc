@@ -54,10 +54,11 @@ def elemAtIndex[A](l:List[A],i:Int):A = (l,i) match {
 
 // set element at position n
 
-def setElem[A](l:List[A],n:Int,elem:A):List[A] = {
-
+def setElement[A](l:List[A],i:Int,elem:A):List[A] = (l,i) match {
+  case (Nil,_) => sys.error(s"index ${i} is invalid")
+  case (xs,0) => ::(elem,xs)
+  case (x::xs,_) => ::(x,setElement(xs,i -1 ,elem))
 }
-
 
 
 val l1 = apply(1, 2, 3, 4)
