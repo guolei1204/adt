@@ -1,3 +1,5 @@
+import scala.annotation.tailrec
+
 sealed trait List[+A]
 
 case object Nil extends List[Nothing]
@@ -59,6 +61,44 @@ def setElement[A](l:List[A],i:Int,elem:A):List[A] = (l,i) match {
   case (xs,0) => ::(elem,xs)
   case (x::xs,_) => ::(x,setElement(xs,i -1 ,elem))
 }
+
+def foldLeft[A](data:List[A])(op:(A,A)=> A):A = data match {
+  case Nil => sys.error("can not fold left empty list")
+  case x::Nil => x
+  case x::y::xs =>{
+    foldLeft(::(op(x, y),xs))(op)
+  }
+}
+
+
+
+
+def reverse[A](data:List[A]):List[A] = {
+  @tailrec
+  def rev(source:List[A],dest:List[A]):List[A] = {
+     source match {
+       case Nil => dest
+       case x::xs => rev(xs,::(x,dest))
+     }
+  }
+  rev(data,Nil)
+}
+
+def foldRight[A](data:List[A])(op:(A,A) => A):A = foldLeft(reverse(data))(op)
+
+print("reverse ===========")
+val source = apply(1, 2, 3, 4)
+print(source)
+print(reverse(source))
+print("reverse ===========")
+
+print("fold right ==============")
+foldRight(source)(_ + _)
+print("fold left ==============")
+val result = foldLeft(apply(1,2,3,4))(_ + _)
+println(s"result + ${result}")
+print("fold ==============")
+
 
 
 val l1 = apply(1, 2, 3, 4)
