@@ -1,5 +1,7 @@
 import sun.font.GlyphLayout.LayoutEngineFactory
 
+import scala.annotation.tailrec
+
 sealed trait  BinTree[+A]
 case object Leaf extends BinTree[Nothing]
 case class Branch[A](value:A,left:BinTree[A],right:BinTree[A]) extends BinTree[A]
@@ -64,6 +66,10 @@ def preorder[A](tree: BinTree[A]):List[A] = tree match {
   case Branch(v,l,r) => v::(preorder(l) ++ preorder(r))
 }
 
+def inorder[A](tree: BinTree[A]):List[A] = tree match {
+  case Leaf => Nil
+  case Branch(v,l,r)=> inorder(l) ++ (v::inorder(r))
+}
 
 def preorderAcc[A](tree:BinTree[A],acc:List[A]):List[A]  = tree match {
   case Leaf => acc
