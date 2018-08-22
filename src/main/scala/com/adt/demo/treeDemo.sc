@@ -78,6 +78,12 @@ def preorderAcc[A](tree:BinTree[A],acc:List[A]):List[A]  = tree match {
     v:: preorderAcc(l,preorderAcc(r,acc))
 }
 
+def postoderAcc[A](tree:BinTree[A],acc:List[A]):List[A]  = tree match {
+  case Leaf => acc
+  case Branch(v,l,r) =>
+    println(s"post  when at ${v} - acc = ${acc}")
+    postoderAcc(l,postoderAcc(r,v::acc))
+}
 
 type Dictionary[A] = BinTree[(String,A)]
 
@@ -113,5 +119,6 @@ val tree3 = flip(tree)
 
 val ll = preorder(tree)
 val ll2 = preorderAcc(tree,Nil)
+val ll3 = postoderAcc(tree,Nil)
 
 
