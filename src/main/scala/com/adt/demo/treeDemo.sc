@@ -50,6 +50,15 @@ def flip[A](tree:BinTree[A]):BinTree[A] = tree match {
   case Branch(v,l,r) => Branch(v,flip(r),flip(l))
 }
 
+//判断树和翻转后的树是否相等
+def flipEqual[A](tree1:BinTree[A],tree2:BinTree[A]) :Boolean = (tree1,tree2) match  {
+  case (Leaf,Leaf) => true
+  case (Branch(v1,l1,r1),Branch(v2,l2,r2)) if v1 == v2 =>
+    flipEqual(l1,r2) && flipEqual(l2,r1)
+  case _ =>
+    false
+}
+
 def preorder[A](tree: BinTree[A]):List[A] = tree match {
   case Leaf => Nil
   case Branch(v,l,r) => v::(preorder(l) ++ preorder(r))
