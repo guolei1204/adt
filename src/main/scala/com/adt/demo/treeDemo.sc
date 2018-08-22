@@ -1,5 +1,3 @@
-import sun.font.GlyphLayout.LayoutEngineFactory
-
 import scala.annotation.tailrec
 
 sealed trait  BinTree[+A]
