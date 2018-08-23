@@ -1,4 +1,4 @@
-val graph = List(("m", "n"), ("m", "o"), ("m", "p"), ("n", "q"), ("o", "r"), ("p", "q"), ("q", "r"), ("q", "s"))
+val graph = List(("m", "n"),("m", "o"), ("m", "p"), ("n", "q"), ("o", "r"), ("p", "q"), ("q", "r"), ("q", "s"))
 
 def succSet(a:String,g:List[(String,String)]):List[String] = g match {
   case Nil => Nil
@@ -51,6 +51,25 @@ def topSort(g:List[(String,String)]):List[String] = {
   result
 }
 
+
+def topSortDetection(g: List[(String, String)]): List[String] = {
+  def sort(nodes: List[String], path: List[String], visited: List[String]): List[String] = nodes match {
+    case Nil => visited
+    case x :: xs if path.contains(x) =>
+      throw new RuntimeException("Cycle detected")
+    case x :: xs =>
+      sort(xs, path ,if (visited.contains(x)) {
+        visited
+      } else {
+        x :: sort(succFilter(x, g), x::path, visited)
+      })
+  }
+  val (start, _) = g.unzip
+  val result = sort(start,List(), List())
+  result
+}
+
+
 def widthFistProfile(init:String,g:List[(String,String)]):List[String] = {
 
   def widthF(nodes: List[String]): List[String] = nodes match {
@@ -73,3 +92,7 @@ depthFirstProfile("m",graph)
 
 print("top sort graph")
 topSort(graph)
+
+
+print("top sort graph with cycle detection")
+topSortDetection(graph)
