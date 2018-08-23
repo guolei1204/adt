@@ -39,8 +39,18 @@ def depthFirstProfile(init: String, g: List[(String, String)]): List[String] = {
 
 
 def widthFistProfile(init:String,g:List[(String,String)]):List[String] = {
-  Nil
+
+  def widthF(nodes: List[String]): List[String] = nodes match {
+    case Nil => Nil
+    case x :: _ =>
+      val subLayer = succFilter(x, g)
+      subLayer ++ widthF(subLayer)
+  }
+  init::widthF(List(init))
 }
+
+print("width fist graph")
+widthFistProfile("m",graph)
 
 succSet("m",graph)
 depthFirst("m",graph)
