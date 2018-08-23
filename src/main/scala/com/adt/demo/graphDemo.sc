@@ -38,6 +38,19 @@ def depthFirstProfile(init: String, g: List[(String, String)]): List[String] = {
 }
 
 
+
+def topSort(g:List[(String,String)]):List[String] = {
+  def sort(nodes:List[String],visited:List[String]):List[String] = nodes match {
+    case Nil => visited
+    case x::xs =>
+      (sort(xs,if(visited.contains(x)) visited else x::sort(succFilter(x,g),visited)))
+  }
+
+  val (start,_) = g.unzip
+  val result = sort(start,List())
+  result
+}
+
 def widthFistProfile(init:String,g:List[(String,String)]):List[String] = {
 
   def widthF(nodes: List[String]): List[String] = nodes match {
@@ -57,3 +70,6 @@ depthFirst("m",graph)
 
 print("profiled depth first graph")
 depthFirstProfile("m",graph)
+
+print("top sort graph")
+topSort(graph)
