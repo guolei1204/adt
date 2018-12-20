@@ -23,9 +23,7 @@ def insert(v:Int,tree: Tree) = {
     case node@Node(_,left,value,right) =>
       val root = if(v < value){
         balance(node.copy(left = ins(left)))
-      }else{
-        node
-      }
+      }else if (v > value) balance(node.copy(right = ins(right))) else node
       root match {
         case node@Node(Red,_,_,_) => node.copy(color = Black)
         case _ => root
