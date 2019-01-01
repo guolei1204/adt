@@ -14,5 +14,6 @@ libraryDependencies ++= Seq(
   "org.xhtmlrenderer" % "flying-saucer-pdf" % "9.0.8",
   "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.0.8",
   "com.alibaba" % "fastjson" % "1.2.51",
-  "junit" % "junit" % "4.12" % Test
+  "junit" % "junit" % "4.12" % Test,
+  "org.ow2.asm" % "asm" % "6.2.1"
 )
