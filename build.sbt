@@ -15,5 +15,9 @@ libraryDependencies ++= Seq(
   "org.xhtmlrenderer" % "flying-saucer-pdf-itext5" % "9.0.8",
   "com.alibaba" % "fastjson" % "1.2.51",
   "junit" % "junit" % "4.12" % Test,
-  "org.ow2.asm" % "asm" % "6.2.1"
+  "org.ow2.asm" % "asm" % "6.2.1",
+  "io.netty" % "netty-all" % "4.1.34.Final",
+  "org.jooq" % "jooq" % "3.11.10",
+  "org.jooq" % "jooq-meta" % "3.11.10",
+  "org.jooq" % "jooq-codegen" % "3.11.10"
 )

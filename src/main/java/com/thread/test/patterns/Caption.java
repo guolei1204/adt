@@ -17,4 +17,10 @@ public class Caption {
         }
         return  caption;
     }
+
+    public static void main(String[] args) {
+        Caption c1 = Caption.getInstance();
+        Caption c2 = Caption.getInstance();
+        System.out.println(c1 == c2);
+    }
 }
