@@ -19,5 +19,6 @@ libraryDependencies ++= Seq(
   "io.netty" % "netty-all" % "4.1.34.Final",
   "org.jooq" % "jooq" % "3.11.10",
   "org.jooq" % "jooq-meta" % "3.11.10",
-  "org.jooq" % "jooq-codegen" % "3.11.10"
+  "org.jooq" % "jooq-codegen" % "3.11.10",
+  "mysql" % "mysql-connector-java" % "5.1.38",
 )
