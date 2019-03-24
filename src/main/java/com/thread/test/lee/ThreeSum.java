@@ -60,7 +60,7 @@ public class ThreeSum {
                 }
                 if (nums[left] + nums[i] + nums[right] < 0) {
                     left = left + 1;
-                }   
+                }
                 while (nums[i] == nums[i + 1] && i < nums.length - 2) {
                     i++;
                 }
