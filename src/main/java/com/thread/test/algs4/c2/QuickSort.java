@@ -1,0 +1,51 @@
+package com.thread.test.algs4.c2;
+
+public class QuickSort {
+    public static void main(String[] args) {
+        Integer[] unsortedArray = new Integer[]{21, 7, 9, 66, 28, 62, 28, 98};
+        quickSort(unsortedArray);
+        SelectionSort.show(unsortedArray);
+    }
+
+    private static void quickSort(Comparable[] array) {
+        sort(array, 0, array.length - 1);
+    }
+
+    private static void sort(Comparable[] array, int l, int r) {
+        if (l >= r) return;
+        Comparable pivot = array[l];
+        int left = l + 1;
+        int right = r;
+        while (left <= right) {
+
+            while (left <= right && less(array[left], pivot)) {
+                left++;
+            }
+
+            while (left <= right && array[right].compareTo(pivot) >= 0) {
+                right--;
+            }
+
+            if (left > right) break;
+            //swap array[left] array[right] while left <= right
+            exchange(array, left, right);
+        }
+        // swap the smaller with pivot
+
+        exchange(array, right, l);
+
+        sort(array, l, right - 1);
+        sort(array, right + 1, r);
+
+    }
+
+    private static void exchange(Comparable[] array, int left, int right) {
+        Comparable tmp = array[left];
+        array[left] = array[right];
+        array[right] = tmp;
+    }
+
+    private static boolean less(Comparable comparable, Comparable comparable1) {
+        return comparable.compareTo(comparable1) < 0;
+    }
+}
