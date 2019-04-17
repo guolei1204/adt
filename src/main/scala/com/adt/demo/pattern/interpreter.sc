@@ -29,7 +29,7 @@ object Expression{
     case "+"  => Some(new AddExpression(left,right))
     case "-"  => Some(new SubExpression(left,right))
     case "*"  => Some(new MultiExpression(left,right))
-    case ""  => Some(new DivideExpression(left,right))
+    case "/"  => Some(new DivideExpression(left,right))
     case n if n.matches("\\d+") => Some(new Number(n.toInt))
     case _ => None
   }
