@@ -13,15 +13,15 @@ class AdvancedInputReader(reader:BufferedReader) extends  InputReader{
   override def readLines() = reader.lines().iterator().asScala.toStream
 }
 
-abstract  class InputReaderDecrator(inputReader: InputReader) extends InputReader{
+abstract  class InputReaderDecorator(inputReader: InputReader) extends InputReader{
   override def readLines(): Stream[String] = inputReader.readLines()
 }
 
-class CapitalizedInputReader(inputReader: InputReader) extends  InputReaderDecrator(inputReader){
+class CapitalizedInputReader(inputReader: InputReader) extends  InputReaderDecorator(inputReader){
   override def readLines() = super.readLines().map(_.toUpperCase)
 }
 
-class CompressInputReader(inputReader: InputReader) extends InputReaderDecrator(inputReader){
+class CompressInputReader(inputReader: InputReader) extends InputReaderDecorator(inputReader){
   override def readLines() = super.readLines().map{
     case line =>
       val text = line.getBytes(Charset.forName("utf-8"))
@@ -37,7 +37,7 @@ class CompressInputReader(inputReader: InputReader) extends InputReaderDecrator(
   }
 }
 
-class Base64InputReader(inputReader: InputReader) extends InputReaderDecrator(inputReader){
+class Base64InputReader(inputReader: InputReader) extends InputReaderDecorator(inputReader){
   override def readLines() = super.readLines().map{case line =>
     Base64.getEncoder.encodeToString(line.getBytes(Charset.forName("utf-8")))
   }
