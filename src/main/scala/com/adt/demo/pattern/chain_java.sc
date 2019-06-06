@@ -12,7 +12,7 @@ trait  Dispenser{
       val left = money.amount % amount
       println(s"dispense $notes note/s of $amount")
       if (left > 0){
-        next.map(_.dispense(Money(left)))
+        next.map(_.dispense(Money(left.toInt)))
       }
     } else {
       next.foreach(_.dispense(money))
