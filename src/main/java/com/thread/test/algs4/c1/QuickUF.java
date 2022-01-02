@@ -38,7 +38,9 @@ public class QuickUF {
         while (scanner.hasNext()) {
             int p = QuickUF.readInt();
             int q = QuickUF.readInt();
-            if (quf.connect(p, q)) continue;
+            if (quf.connect(p, q)) {
+                continue;
+            }
             quf.union(p, q);
             System.out.println(p + " " + q);
         }
@@ -53,10 +55,14 @@ public class QuickUF {
         int pId = id[p];
         int qId = id[q];
 
-        if (pId == qId) return;
+        if (pId == qId) {
+            return;
+        }
 
         for (int i = 0; i < id.length; i++) {
-            if (id[i] == pId) id[i] = qId;
+            if (id[i] == pId) {
+                id[i] = qId;
+            }
         }
         n--;
     }
