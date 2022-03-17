@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Convert {
     public static  String convert(String s,int rows){
-        if(rows == 1) return  s;
+        if(rows == 1) {
+            return  s;
+        }
         ArrayList<StringBuilder> rs = new ArrayList<StringBuilder>();
         for (int i = 0; i < Math.min(s.length(), rows); i++) {
             rs.add(new StringBuilder());
@@ -15,7 +17,9 @@ public class Convert {
 
         for (char c : s.toCharArray()) {
             rs.get(currentRow).append(c);
-            if(currentRow == 0|| currentRow == rows-1) goingDown =  !goingDown;
+            if(currentRow == 0|| currentRow == rows-1) {
+                goingDown =  !goingDown;
+            }
             currentRow += goingDown?1:-1;
         }
         StringBuilder result = new StringBuilder();
